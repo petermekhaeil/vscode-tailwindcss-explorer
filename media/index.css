@@ -49,3 +49,7 @@ ul,
 .nested li:hover .tooltiptext {
   visibility: visible;
 }
+
+.faded {
+  color: var(--vscode-input-placeholderForeground);
+}

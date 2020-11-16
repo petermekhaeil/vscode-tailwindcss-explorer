@@ -101,12 +101,18 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
                 <span class="caret">${kebabToTitleCase(variant.plugin)}</span>
                 <ul class="nested">
                   ${Object.keys(variant.utilities)
+                    .filter((utility) => utility.indexOf(".") === 0)
                     .map((utility) => {
                       const css = variant.utilities[utility];
                       const cssText = stringifyProperties(css);
+                      const name = utility.replace(
+                        "> :not(template) ~ :not(template)",
+                        "<span class='faded'> > * + *</span>"
+                      );
+
                       return `
                         <li>
-                          ${utility}
+                          ${name}
                           <span class="tooltiptext"><pre>${cssText}</pre></span>
                         </li>
                       `;
