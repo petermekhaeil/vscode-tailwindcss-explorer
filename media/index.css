@@ -1,0 +1,51 @@
+ul,
+#list-primary {
+  list-style-type: none;
+}
+
+#list-primary {
+  margin: 0;
+  padding: 0;
+}
+
+#list-primary li {
+  cursor: pointer;
+}
+
+.caret {
+  cursor: pointer;
+}
+
+.caret::before {
+  content: "\25B6";
+  color: white;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.caret-down::before {
+  transform: rotate(90deg);
+}
+
+.nested {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+
+.nested li .tooltiptext {
+  visibility: hidden;
+  background-color: var(--vscode-editorWidget-background);
+  color: var(--vscode-editorWidget-foreground);
+  padding: 0px 4px;
+  position: absolute;
+  z-index: 1;
+  font-size: 0.8rem;
+  border: 1px solid var(--vscode-checkbox-border);
+}
+
+.nested li:hover .tooltiptext {
+  visibility: visible;
+}
