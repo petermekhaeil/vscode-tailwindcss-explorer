@@ -53,3 +53,12 @@ ul,
 .faded {
   color: var(--vscode-input-placeholderForeground);
 }
+
+.colour-box {
+  border: 1px solid white;
+  display: inline-block;
+  width: 10px;
+  background: white;
+  height: 10px;
+  margin-left: 4px;
+}

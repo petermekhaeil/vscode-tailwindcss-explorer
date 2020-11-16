@@ -5,6 +5,8 @@ import getCorePugins from "./corePlugins";
 import pathExists from "./pathExists";
 import { kebabToTitleCase } from "./kebabToTitleCase";
 import { stringifyProperties } from "./stringifyProperties";
+import getColour from "./getColour";
+
 export class SidebarProvider implements vscode.WebviewViewProvider {
   public static readonly viewType = "TailwindCssPanel";
   private _view?: vscode.WebviewView;
@@ -85,7 +87,7 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
 			-->
 			<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${
         webview.cspSource
-      }; script-src 'nonce-${nonce}';">
+      } 'nonce-${nonce}'; script-src 'nonce-${nonce}';">
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">
 			<link href="${styleResetUri}" rel="stylesheet">
 			<link href="${styleVSCodeUri}" rel="stylesheet">
@@ -105,14 +107,19 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
                     .map((utility) => {
                       const css = variant.utilities[utility];
                       const cssText = stringifyProperties(css);
-                      const name = utility.replace(
-                        "> :not(template) ~ :not(template)",
-                        "<span class='faded'> > * + *</span>"
-                      );
+                      const name = utility
+                        .replace(
+                          "> :not(template) ~ :not(template)",
+                          "<span class='faded'> > * + *</span>"
+                        )
+                        .replace(
+                          "::placeholder",
+                          "<span class='faded'>::placeholder</span>"
+                        );
 
                       return `
                         <li>
-                          ${name}
+                          ${name} ${getColour(name, css, nonce)}
                           <span class="tooltiptext"><pre>${cssText}</pre></span>
                         </li>
                       `;
