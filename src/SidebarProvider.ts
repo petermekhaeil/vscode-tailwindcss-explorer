@@ -94,13 +94,15 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
 			<link href="${styleMainUri}" rel="stylesheet">
 		</head>
     <body>
-      <input type="text" placeholder="Search"></input>
+      <input type="text" id="search" placeholder="Search"></input>
       <ul id="list-primary">
         ${variants
           .map((variant) => {
             return `
               <li>
-                <span class="caret">${kebabToTitleCase(variant.plugin)}</span>
+                <span class="name caret">${kebabToTitleCase(
+                  variant.plugin
+                )}</span>
                 <ul class="nested">
                   ${Object.keys(variant.utilities)
                     .filter((utility) => utility.indexOf(".") === 0)
