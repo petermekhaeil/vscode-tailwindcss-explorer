@@ -5,6 +5,9 @@
   "version": "0.1.0",
   "publisher": "vscode-tailwindcss-explorer",
   "author": "Peter Mekhaeil <mekhaeil.peter@gmail.com>",
+  "repository": {
+    "url": "https://github.com/petermekhaeil/vscode-tailwindcss-explorer.git"
+  },
   "license": "MIT",
   "enableProposedApi": true,
   "engines": {
