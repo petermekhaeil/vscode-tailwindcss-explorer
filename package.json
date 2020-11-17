@@ -3,14 +3,13 @@
   "displayName": "Tailwind CSS Explorer",
   "description": "Tailwind CSS Explorer",
   "version": "0.1.0",
-  "publisher": "vscode-tailwindcss-explorer",
+  "publisher": "PeterMekhaeil",
   "author": "Peter Mekhaeil <mekhaeil.peter@gmail.com>",
   "repository": {
     "type": "git",
     "url": "https://github.com/petermekhaeil/vscode-tailwindcss-explorer.git"
   },
   "license": "MIT",
-  "enableProposedApi": true,
   "engines": {
     "vscode": "^1.50.0"
   },
