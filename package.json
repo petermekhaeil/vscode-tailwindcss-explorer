@@ -17,6 +17,9 @@
     "Other"
   ],
   "icon": "media/icon.png",
+  "galleryBanner": {
+    "color": "#f9fafb"
+  },
   "activationEvents": [
     "onView:TailwindCssPanel"
   ],
