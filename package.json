@@ -16,6 +16,7 @@
   "categories": [
     "Other"
   ],
+  "icon": "media/icon.png",
   "activationEvents": [
     "onView:TailwindCssPanel"
   ],
