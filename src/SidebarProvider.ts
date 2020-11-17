@@ -55,6 +55,17 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
       webviewView.webview,
       this._utilities
     );
+
+    webviewView.webview.onDidReceiveMessage((data) => {
+      switch (data.type) {
+        case "addClass": {
+          vscode.window.activeTextEditor?.insertSnippet(
+            new vscode.SnippetString(`${data.value}`)
+          );
+          break;
+        }
+      }
+    });
   }
 
   private _getHtmlForWebview(webview: vscode.Webview, variants) {
@@ -120,7 +131,7 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
                         );
 
                       return `
-                        <li>
+                        <li data-name="${name}">
                           ${name} ${getColour(name, css, nonce)}
                           <span class="tooltiptext"><pre>${cssText}</pre></span>
                         </li>

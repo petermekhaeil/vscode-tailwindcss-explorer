@@ -3,10 +3,13 @@
 // This script will be run within the webview itself
 // It cannot access the main VS Code APIs directly.
 (function () {
+  const vscode = acquireVsCodeApi();
+
   var toggler = document.getElementsByClassName("caret");
   var searchInput = document.getElementById("search");
-  var i;
+  var twListItem = document.querySelectorAll("li[data-name]");
 
+  var i;
   for (i = 0; i < toggler.length; i++) {
     toggler[i].addEventListener("click", function () {
       this.parentElement.querySelector(".nested").classList.toggle("active");
@@ -52,5 +55,16 @@
     }
   }, 250);
 
+  var handleClassClick = (e) => {
+    vscode.postMessage({
+      type: "addClass",
+      value: e.target.getAttribute("data-name").substring(1),
+    });
+  };
+
   searchInput.addEventListener("keyup", handleSearchKeyUp);
+
+  for (let i = 0; i < twListItem.length; i++) {
+    twListItem[i].addEventListener("click", handleClassClick);
+  }
 })();

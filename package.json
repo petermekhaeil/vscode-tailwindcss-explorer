@@ -6,6 +6,7 @@
   "publisher": "vscode-tailwindcss-explorer",
   "author": "Peter Mekhaeil <mekhaeil.peter@gmail.com>",
   "repository": {
+    "type": "git",
     "url": "https://github.com/petermekhaeil/vscode-tailwindcss-explorer.git"
   },
   "license": "MIT",
