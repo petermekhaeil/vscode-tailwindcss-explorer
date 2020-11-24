@@ -16,7 +16,8 @@ const getPlugins = (workspaceRoot: string) => {
           "*.js"
         )
       )
-      .map((filename: string) => path.basename(filename, ".js")),
+      .map((filename: string) => path.basename(filename, ".js"))
+      .filter((name) => name !== "index"),
   ].filter((x, i, a) => a.indexOf(x) === i);
 
   return plugins;

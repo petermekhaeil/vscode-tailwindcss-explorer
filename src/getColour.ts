@@ -3,34 +3,39 @@
 const getColour = (name, css, nonce) => {
   const classStr = name.split(/[\s:<]/)[0];
 
-  let colour;
+  const showColour =
+    classStr.indexOf(".bg-") === 0 ||
+    classStr.indexOf(".border-") === 0 ||
+    classStr.indexOf(".divide-") === 0 ||
+    classStr.indexOf(".placeholder-") === 0 ||
+    classStr.indexOf(".text-") === 0;
 
-  if (classStr.indexOf(".bg-") === 0 && css["background-color"]) {
-    colour = css["background-color"][0];
-  }
+  const property = (str) => {
+    return str === "color" ? "background-color" : str;
+  };
 
-  if (classStr.indexOf(".border-") === 0 && css["border-color"]) {
-    colour = css["border-color"][0];
-  }
+  console.log(css);
 
-  if (classStr.indexOf(".divide-") === 0 && css["border-color"]) {
-    colour = css["border-color"][0];
-  }
+  const toCssStr = (css) => {
+    return `${Object.entries(css)
+      .map((line) => {
+        const [k, v] = line;
+        if (Array.isArray(v)) {
+          return v.map((v) => `${property(k)}:${v};`).join("\n");
+        } else {
+          return `${property(k)}:${v}`;
+        }
+      })
+      .join(";\n")}`;
+  };
 
-  if (classStr.indexOf(".placeholder-") === 0 && css["color"]) {
-    colour = css["color"][0];
-  }
-
-  if (classStr.indexOf(".text-") === 0 && css["color"]) {
-    colour = css["color"][0];
-  }
-
-  if (colour) {
+  if (showColour) {
+    console.log("css", css);
     const styleName = `color-box-${classStr.substring(1)}`;
     return `
       <style nonce="${nonce}">
           .${styleName} {
-              background-color: ${colour}
+              ${toCssStr(css)}
           }
       </style>
       <div class="colour-box ${styleName}"></div>

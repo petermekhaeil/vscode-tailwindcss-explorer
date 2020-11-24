@@ -55,10 +55,10 @@ ul,
 }
 
 .colour-box {
-  border: 1px solid white;
+  border: 5px solid transparent;
   display: inline-block;
   width: 10px;
-  background: white;
+  background: transparent;
   height: 10px;
   margin-left: 4px;
 }
