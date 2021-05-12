@@ -2,7 +2,7 @@
   "name": "vscode-tailwindcss-explorer",
   "displayName": "Tailwind CSS Explorer",
   "description": "Tailwind CSS Explorer",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "publisher": "PeterMekhaeil",
   "author": "Peter Mekhaeil <mekhaeil.peter@gmail.com>",
   "repository": {

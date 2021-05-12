@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.0
+
+- Add meaningful message if failed to find Tailwind CSS.
+
 ## 0.4.0
 
 - Tailwind CSS v2.0 support.
