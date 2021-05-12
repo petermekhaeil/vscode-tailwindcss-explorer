@@ -1,4 +1,4 @@
-import * as fs from "fs";
+import * as fs from 'fs';
 
 const pathExists = (p: string): boolean => {
   try {

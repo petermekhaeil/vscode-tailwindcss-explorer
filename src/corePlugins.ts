@@ -1,7 +1,7 @@
-import * as dlv from "dlv";
-import * as path from "path";
-import normalizeProperties from "./normalizeProperties";
-import defaultConfig from "./defaultConfig";
+import * as dlv from 'dlv';
+import * as path from 'path';
+import normalizeProperties from './normalizeProperties';
+import defaultConfig from './defaultConfig';
 
 // https://github.com/tailwindlabs/tailwindcss.com/blob/master/src/utils/corePluginsWithExamples.js
 
@@ -11,10 +11,10 @@ const corePlugins = (plugins, workspaceRoot: string) => {
 
     const mod = require(path.join(
       workspaceRoot,
-      "node_modules",
-      "tailwindcss",
-      "lib",
-      "plugins",
+      'node_modules',
+      'tailwindcss',
+      'lib',
+      'plugins',
       plugin
     ));
 
@@ -29,12 +29,12 @@ const corePlugins = (plugins, workspaceRoot: string) => {
       },
       addComponents: () => {},
       addBase: () => {},
-      config: () => ({ future: "all" }),
+      config: () => ({ future: 'all' }),
       theme: (path, defaultValue) =>
         dlv(defaultConfig(workspaceRoot).theme, path, defaultValue),
       variants: () => [],
-      e: (x) => x.replace(/([:.])/g, "\\$1"),
-      target: () => "modern",
+      e: (x) => x.replace(/([:.])/g, '\\$1'),
+      target: () => 'modern',
       corePlugins: () => true,
       prefix: (x) => x,
     });

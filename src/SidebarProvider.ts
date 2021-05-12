@@ -1,14 +1,14 @@
-import * as vscode from "vscode";
-import * as path from "path";
-import getPlugins from "./plugins";
-import getCorePugins from "./corePlugins";
-import pathExists from "./pathExists";
-import { kebabToTitleCase } from "./kebabToTitleCase";
-import { stringifyProperties } from "./stringifyProperties";
-import getColour from "./getColour";
+import * as vscode from 'vscode';
+import * as path from 'path';
+import getPlugins from './plugins';
+import getCorePugins from './corePlugins';
+import pathExists from './pathExists';
+import { kebabToTitleCase } from './kebabToTitleCase';
+import { stringifyProperties } from './stringifyProperties';
+import getColour from './getColour';
 
 export class SidebarProvider implements vscode.WebviewViewProvider {
-  public static readonly viewType = "TailwindCssPanel";
+  public static readonly viewType = 'TailwindCssPanel';
   private _view?: vscode.WebviewView;
 
   _utilities = [];
@@ -26,7 +26,7 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
     }
 
     if (
-      !pathExists(path.join(this.workspaceRoot, "node_modules", "tailwindcss"))
+      !pathExists(path.join(this.workspaceRoot, 'node_modules', 'tailwindcss'))
     ) {
       return false;
     }
@@ -58,7 +58,7 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
 
     webviewView.webview.onDidReceiveMessage((data) => {
       switch (data.type) {
-        case "addClass": {
+        case 'addClass': {
           vscode.window.activeTextEditor?.insertSnippet(
             new vscode.SnippetString(`${data.value}`)
           );
@@ -71,18 +71,18 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
   private _getHtmlForWebview(webview: vscode.Webview, variants) {
     // Get the local path to main script run in the webview, then convert it to a uri we can use in the webview.
     const scriptUri = webview.asWebviewUri(
-      vscode.Uri.joinPath(this._extensionUri, "media", "index.js")
+      vscode.Uri.joinPath(this._extensionUri, 'media', 'index.js')
     );
 
     // Do the same for the stylesheet.
     const styleResetUri = webview.asWebviewUri(
-      vscode.Uri.joinPath(this._extensionUri, "media", "reset.css")
+      vscode.Uri.joinPath(this._extensionUri, 'media', 'reset.css')
     );
     const styleVSCodeUri = webview.asWebviewUri(
-      vscode.Uri.joinPath(this._extensionUri, "media", "vscode.css")
+      vscode.Uri.joinPath(this._extensionUri, 'media', 'vscode.css')
     );
     const styleMainUri = webview.asWebviewUri(
-      vscode.Uri.joinPath(this._extensionUri, "media", "index.css")
+      vscode.Uri.joinPath(this._extensionUri, 'media', 'index.css')
     );
 
     // Use a nonce to only allow a specific script to be run.
@@ -106,9 +106,9 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
 		</head>
     <body>
     ${
-      variants.length === 0 
-      ? `<p>Tailwind CSS cannot be found. Please check it is installed correctly in your project.</p>` 
-      : ``
+      variants.length === 0
+        ? `<p>Tailwind CSS cannot be found. Please check it is installed correctly in your project.</p>`
+        : ``
     }
     ${
       variants.length !== 0
@@ -125,17 +125,17 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
                 )}</span>
                 <ul class="nested">
                   ${Object.keys(variant.utilities)
-                    .filter((utility) => utility.indexOf(".") === 0)
+                    .filter((utility) => utility.indexOf('.') === 0)
                     .map((utility) => {
                       const css = variant.utilities[utility];
                       const cssText = stringifyProperties(css);
                       const name = utility
                         .replace(
-                          "> :not(template) ~ :not(template)",
+                          '> :not(template) ~ :not(template)',
                           "<span class='faded'> > * + *</span>"
                         )
                         .replace(
-                          "::placeholder",
+                          '::placeholder',
                           "<span class='faded'>::placeholder</span>"
                         );
 
@@ -146,12 +146,12 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
                         </li>
                       `;
                     })
-                    .join("")}
+                    .join('')}
                 </ul>
               </li>
             `;
           })
-          .join("")}
+          .join('')}
       </ul>
       <script nonce="${nonce}" src="${scriptUri}"></script>
 		</body>
@@ -160,9 +160,9 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
 }
 
 function getNonce() {
-  let text = "";
+  let text = '';
   const possible =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   for (let i = 0; i < 32; i++) {
     text += possible.charAt(Math.floor(Math.random() * possible.length));
   }

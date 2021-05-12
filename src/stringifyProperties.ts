@@ -1,7 +1,7 @@
 // https://github.com/tailwindlabs/tailwindcss.com/blob/master/src/components/ClassTable.js
 
-import { isObject } from "./isObject";
-import { castArray } from "./castArray";
+import { isObject } from './isObject';
+import { castArray } from './castArray';
 
 export function stringifyProperties(
   properties,
@@ -18,7 +18,7 @@ export function stringifyProperties(
           indent: indent + 1,
         })
       );
-      lines.push("}");
+      lines.push('}');
     } else {
       castArray(properties[property]).forEach((value, i) => {
         //@ts-ignore
@@ -26,10 +26,10 @@ export function stringifyProperties(
           return;
         }
         lines.push(
-          `${"  ".repeat(indent)}${property}: ${transformValue(value)};`
+          `${'  '.repeat(indent)}${property}: ${transformValue(value)};`
         );
       });
     }
   });
-  return lines.join("\n");
+  return lines.join('\n');
 }
