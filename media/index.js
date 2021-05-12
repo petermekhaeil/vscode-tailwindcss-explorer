@@ -44,7 +44,6 @@
 
     for (i = 0; i < spans.length; i++) {
       var txtValue = spans[i].textContent || spans[i].innerText;
-      console.log(txtValue);
       if (txtValue.toUpperCase().indexOf(value) > -1) {
         spans[i].style.display = "";
         spans[i].nextElementSibling.style.display = "";

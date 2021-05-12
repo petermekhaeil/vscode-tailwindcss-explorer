@@ -11,7 +11,7 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
   public static readonly viewType = "TailwindCssPanel";
   private _view?: vscode.WebviewView;
 
-  _utilities = {};
+  _utilities = [];
 
   constructor(
     private readonly _extensionUri: vscode.Uri,
@@ -105,7 +105,15 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
 			<link href="${styleMainUri}" rel="stylesheet">
 		</head>
     <body>
-      <input type="text" id="search" placeholder="Search"></input>
+    ${
+      variants.length === 0 &&
+      `<p>Tailwind CSS cannot be found. Please check it is installed correctly in your project.</p>`
+    }
+    ${
+      variants.length !== 0
+        ? `<input type="text" id="search" placeholder="Search"></input>`
+        : ``
+    }
       <ul id="list-primary">
         ${variants
           .map((variant) => {

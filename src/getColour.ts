@@ -14,8 +14,6 @@ const getColour = (name, css, nonce) => {
     return str === "color" ? "background-color" : str;
   };
 
-  console.log(css);
-
   const toCssStr = (css) => {
     return `${Object.entries(css)
       .map((line) => {
@@ -30,7 +28,6 @@ const getColour = (name, css, nonce) => {
   };
 
   if (showColour) {
-    console.log("css", css);
     const styleName = `color-box-${classStr.substring(1)}`;
     return `
       <style nonce="${nonce}">
