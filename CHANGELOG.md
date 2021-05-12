@@ -1,5 +1,7 @@
 # Changelog
+## 0.6.1
 
+- Chore: Add description for marketplace.
 ## 0.6.0
 
 - Chore: Format with Prettier.
