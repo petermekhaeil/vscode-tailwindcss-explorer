@@ -1,47 +1,23 @@
-import * as dlv from 'dlv';
 import * as path from 'path';
-import normalizeProperties from './normalizeProperties';
-import defaultConfig from './defaultConfig';
+import { getUtilities } from './getUtilities';
 
 // https://github.com/tailwindlabs/tailwindcss.com/blob/master/src/utils/corePluginsWithExamples.js
 
 const corePlugins = (plugins, workspaceRoot: string) => {
+  const pluginDefs = require(path.join(
+    workspaceRoot,
+    'node_modules',
+    'tailwindcss',
+    'lib',
+    'corePlugins.js'
+  )).corePlugins;
+
   return plugins.map((plugin) => {
-    const utilities = {};
-
-    const mod = require(path.join(
-      workspaceRoot,
-      'node_modules',
-      'tailwindcss',
-      'lib',
-      'plugins',
-      plugin
-    ));
-
-    (mod.default || mod)()({
-      addUtilities: (utils) => {
-        utils = Array.isArray(utils) ? utils : [utils];
-        for (let i = 0; i < utils.length; i++) {
-          for (let prop in utils[i]) {
-            utilities[prop] = normalizeProperties(utils[i][prop]);
-          }
-        }
-      },
-      addComponents: () => {},
-      addBase: () => {},
-      config: () => ({ future: 'all' }),
-      theme: (path, defaultValue) =>
-        dlv(defaultConfig(workspaceRoot).theme, path, defaultValue),
-      variants: () => [],
-      e: (x) => x.replace(/([:.])/g, '\\$1'),
-      target: () => 'modern',
-      corePlugins: () => true,
-      prefix: (x) => x,
-    });
+    const utilities = getUtilities(workspaceRoot, pluginDefs[plugin]);
 
     return {
       plugin,
-      utilities: utilities,
+      utilities,
     };
   });
 };
