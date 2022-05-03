@@ -32,14 +32,14 @@
     "viewsContainers": {
       "activitybar": [
         {
-          "id": "package-explorer",
+          "id": "tailwind-css-explorer",
           "title": "Tailwind CSS",
           "icon": "media/dep.svg"
         }
       ]
     },
     "views": {
-      "package-explorer": [
+      "tailwind-css-explorer": [
         {
           "type": "webview",
           "id": "TailwindCssPanel",
