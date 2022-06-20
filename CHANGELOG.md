@@ -1,4 +1,9 @@
 # Changelog
+## 0.7.0
+
+- Fix: Update to work with Tailwind CSS v3.
+- Fix: Change ID of vscode extension ID.
+
 ## 0.6.1
 
 - Chore: Add description for marketplace.

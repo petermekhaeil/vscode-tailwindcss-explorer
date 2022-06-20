@@ -2,7 +2,7 @@
   "name": "vscode-tailwindcss-explorer",
   "displayName": "Tailwind CSS Explorer",
   "description": "Explore the classes available in your project's tailwind setup.",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "publisher": "PeterMekhaeil",
   "author": "Peter Mekhaeil <mekhaeil.peter@gmail.com>",
   "repository": {
