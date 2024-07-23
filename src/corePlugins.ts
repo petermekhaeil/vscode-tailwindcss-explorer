@@ -13,7 +13,12 @@ const corePlugins = (plugins, workspaceRoot: string) => {
   )).corePlugins;
 
   return plugins.map((plugin) => {
-    const utilities = getUtilities(workspaceRoot, pluginDefs[plugin]);
+    let utilities = {};
+    try {
+      utilities = getUtilities(workspaceRoot, pluginDefs[plugin]);
+    } catch(error) {
+      console.log(error);
+    }
 
     return {
       plugin,

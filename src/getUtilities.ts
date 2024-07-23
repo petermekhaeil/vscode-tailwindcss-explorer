@@ -31,6 +31,12 @@ export function getUtilities(
     addBase: () => {},
     addDefaults: () => {},
     addComponents: () => {},
+    config: () => {
+      return {
+        experimental: 'all',
+        future: 'all'
+      };
+    },
     corePlugins: () => true,
     prefix: (x) => x,
     addUtilities,
