@@ -2,7 +2,7 @@
   "name": "vscode-tailwindcss-explorer",
   "displayName": "Tailwind CSS Explorer",
   "description": "Explore the classes available in your project's tailwind setup.",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "publisher": "PeterMekhaeil",
   "author": "Peter Mekhaeil <mekhaeil.peter@gmail.com>",
   "repository": {
@@ -52,6 +52,7 @@
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
+    "package": "npm run compile && vsce package",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "lint": "eslint . --ext .ts,.tsx",
@@ -62,6 +63,7 @@
     "@types/vscode": "^1.50.0",
     "@typescript-eslint/eslint-plugin": "^3.0.2",
     "@typescript-eslint/parser": "^3.0.2",
+    "@vscode/vsce": "^2.31.1",
     "eslint": "^7.1.0",
     "prettier": "2.3.0",
     "typescript": "^4.0.2"
